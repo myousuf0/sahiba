@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get a Quote · SAHIBA TRADE VENTURES</title>
+
+  <!-- Google Fonts: Syne + Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- AOS Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <!-- Favicon (logo from project folder) -->
+  <link rel="icon" type="image/png" href="logo.jpg" />
+
+  <style>
+    /* ===== CSS VARIABLES (exact match) ===== */
+    :root {
+      --navy: #07234E;
+      --navy-soft: #0E3163;
+      --cream: #F1EEE6;
+      --cream-deep: #E6E0D2;
+      --gold: #C19243;
+      --gold-light: #D6AE6C;
+      --bronze: #866132;
+      --gold-glow: rgba(193, 146, 67, 0.25);
+      --navy-glow: rgba(7, 35, 78, 0.08);
+      --text-main: var(--navy);
+      --text-muted: #4A5A76;
+      --font-display: 'Syne', sans-serif;
+      --font-sans: 'Inter', sans-serif;
+    }
+
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: auto;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--cream);
+      color: var(--text-main);
+      overflow-x: hidden;
+    }
+
+    body.menu-open { overflow: hidden; }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .gold {
+      color: var(--gold);
+    }
+
+    .gold-text {
+      background: linear-gradient(135deg, var(--bronze), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-padding {
+      padding: 100px 0;
+    }
+
+    .section-tag {
+      font-size: 13px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--bronze);
+      font-weight: 700;
+      font-family: var(--font-sans);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 48px;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-top: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      max-width: 600px;
+      margin-top: 16px;
+      line-height: 1.8;
+      font-size: 17px;
+    }
+
+    .center-text {
+      text-align: center;
+    }
+
+    .center-text .section-subtitle {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn-gold {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--gold-light), var(--bronze));
+      color: var(--cream);
+      padding: 16px 40px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 15px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-family: var(--font-sans);
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 40px var(--gold-glow);
+    }
+
+    .btn-outline {
+      display: inline-block;
+      background: transparent;
+      color: var(--navy);
+      padding: 16px 40px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 15px;
+      border: 2px solid rgba(7, 35, 78, 0.18);
+      cursor: pointer;
+      transition: all 0.35s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-family: var(--font-sans);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--bronze);
+      color: var(--bronze);
+      background: rgba(193, 146, 67, 0.06);
+      transform: translateY(-3px);
+    }
+
+    /* ===== NAVBAR (copied from main) ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 22px 0;
+      z-index: 1000;
+      transition: all 0.4s ease;
+      background: transparent;
+    }
+
+    .navbar.scrolled {
+      background: rgba(241, 238, 230, 0.9);
+      backdrop-filter: blur(20px);
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(7, 35, 78, 0.08);
+      box-shadow: 0 4px 30px rgba(7, 35, 78, 0.04);
+    }
+
+    .navbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo img {
+      height: 40px;
+      width: auto;
+      display: block;
+    }
+
+    .logo-text {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .logo-text .light {
+      font-weight: 500;
+      color: #5c86c7;
+    }
+
+    .logo-text .small {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      border-left: 2px solid rgba(7, 35, 78, 0.15);
+      padding-left: 10px;
+      margin-left: 6px;
+      letter-spacing: 2px;
+      font-family: var(--font-sans);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 600;
+      color: #ffffff;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .navbar.scrolled .nav-links a {
+      color: var(--navy);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      background: transparent;
+      border: 2.5px solid #c19243;
+      color: #c19243;
+      padding: 10px 28px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 13px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      font-family: var(--font-sans);
+    }
+
+    .nav-cta:hover {
+      background: var(--bronze);
+      color: var(--cream);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    .hamburger span {
+      width: 28px;
+      height: 2px;
+      background: var(--navy);
+      transition: all 0.3s ease;
+    }
+
+    /* ===== HERO (mini) ===== */
+    .page-hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      background: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+      margin-top: 0;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgb(0 0 0 / 88%) 0%, rgb(0 0 0 / 72%) 55%, rgba(134, 97, 50, 0.55) 100%);
+    }
+
+    .page-hero .container {
+      position: relative;
+      z-index: 2;
+      padding-top: 120px;
+      padding-bottom: 60px;
+    }
+
+    .page-hero h1 {
+      font-family: var(--font-display);
+      font-size: 56px;
+      font-weight: 800;
+      color: var(--cream);
+      line-height: 1.1;
+    }
+
+    .page-hero p {
+      color: rgba(241, 238, 230, 0.8);
+      font-size: 18px;
+      max-width: 580px;
+      margin-top: 12px;
+      line-height: 1.7;
+    }
+
+    /* ===== QUOTE FORM ===== */
+    .quote-section {
+      background: var(--cream);
+    }
+
+    .quote-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .quote-form-card {
+      background: #FFFFFF;
+      padding: 48px 40px;
+      border-radius: 24px;
+      box-shadow: 0 12px 48px rgba(7, 35, 78, 0.06);
+      border: 1px solid rgba(7, 35, 78, 0.06);
+    }
+
+    .quote-form-card .section-tag {
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .quote-form-card h2 {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .quote-form-card .form-sub {
+      color: var(--text-muted);
+      margin-bottom: 28px;
+      font-size: 15px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 6px;
+      color: var(--navy);
+    }
+
+    .form-group label .required {
+      color: #b33;
+      margin-left: 2px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1.5px solid rgba(7, 35, 78, 0.12);
+      border-radius: 14px;
+      font-family: var(--font-sans);
+      font-size: 15px;
+      background: var(--cream);
+      transition: border 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 4px var(--gold-glow);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 18px;
+      font-size: 16px;
+      margin-top: 8px;
+    }
+
+    .quote-side {
+      padding-top: 12px;
+    }
+
+    .quote-side .info-box {
+      background: var(--cream-deep);
+      border-radius: 20px;
+      padding: 32px 28px;
+      margin-bottom: 28px;
+      border: 1px solid rgba(7, 35, 78, 0.06);
+    }
+
+    .quote-side .info-box h4 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .quote-side .info-box p {
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .quote-side .info-box i {
+      color: var(--bronze);
+      margin-right: 10px;
+      width: 22px;
+    }
+
+    .quote-side .info-box .contact-line {
+      margin-top: 14px;
+      font-weight: 500;
+    }
+
+    .quote-side .info-box .contact-line i {
+      margin-right: 10px;
+      color: var(--gold);
+    }
+
+    .benefits-mini {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .benefits-mini .item {
+      background: #FFFFFF;
+      padding: 14px 16px;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(7, 35, 78, 0.05);
+      box-shadow: 0 2px 8px rgba(7, 35, 78, 0.02);
+    }
+
+    .benefits-mini .item i {
+      color: var(--gold);
+      font-size: 18px;
+    }
+
+    /* ===== FOOTER (copied) ===== */
+    .footer {
+      background: var(--cream-deep);
+      padding: 70px 0 30px;
+      border-top: 1px solid rgba(7, 35, 78, 0.06);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1.5fr 1.5fr;
+      gap: 40px;
+      padding-bottom: 50px;
+      border-bottom: 1px solid rgba(7, 35, 78, 0.08);
+    }
+
+    .footer-brand .logo img {
+      height: 44px;
+    }
+
+    .footer-brand p {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-top: 14px;
+      line-height: 1.8;
+      max-width: 280px;
+    }
+
+    .footer h4 {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .footer ul {
+      list-style: none;
+    }
+
+    .footer ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer ul a {
+      color: var(--text-muted);
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
+
+    .footer ul a:hover {
+      color: var(--bronze);
+    }
+
+    .footer-contact p {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .footer-contact i {
+      color: var(--bronze);
+      width: 24px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .quote-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        background: rgba(241, 238, 230, 0.98) !important;
+        backdrop-filter: blur(20px);
+        padding: 14px 0 !important;
+        box-shadow: 0 4px 30px rgba(7, 35, 78, 0.04);
+        border-bottom: 1px solid rgba(7, 35, 78, 0.08);
+      }
+      .logo-text {
+        display: none;
+      }
+      .logo img {
+        height: 36px;
+      }
+      .hamburger span {
+        background: var(--navy) !important;
+      }
+
+      .hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+      .hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+      .hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+      .navbar .nav-links.active { animation: menuReveal 0.35s ease both; }
+      @keyframes menuReveal { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
+      [data-aos] { will-change: transform, opacity; }
+      .btn-gold, .btn-outline, .nav-cta { position: relative; overflow: hidden; }
+      .btn-gold::before, .btn-outline::before, .nav-cta::before { content: ''; position: absolute; inset: 0; transform: translateX(-110%); background: rgba(255,255,255,0.16); transition: transform 0.45s ease; }
+      .btn-gold:hover::before, .btn-outline:hover::before, .nav-cta:hover::before { transform: translateX(110%); }
+      .nav-links {
+        display: none;
+      }
+      .nav-links a {
+        color: var(--navy);
+        font-size: 16px;
+      }
+      .nav-cta {
+        width: 100%;
+        text-align: center;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(241, 238, 230, 0.98);
+        backdrop-filter: blur(20px);
+        padding: 30px 24px;
+        gap: 20px;
+        border-bottom: 1px solid rgba(7, 35, 78, 0.08);
+        box-shadow: 0 18px 35px rgba(7, 35, 78, 0.12);
+      }
+      .page-hero h1 {
+        font-size: 36px;
+      }
+      .quote-form-card {
+        padding: 28px 20px;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      .benefits-mini {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .page-hero h1 {
+        font-size: 28px;
+      }
+      .container {
+        padding: 0 18px;
+      }
+      .section-title {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="logo.jpg" alt="Sahiba Trade Ventures logo" onerror="this.style.display='none'" />
+        <span class="logo-text">
+          <span class="gold">SAHIBA</span>
+          <span class="light">TRADE</span>
+          <span class="small">VENTURES</span>
+        </span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Our Services</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="get-quote.html"><button class="nav-cta">Request Quote</button></a></li>
+      </ul>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE HERO ===== -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="hero-tag" style="color: var(--gold-light); letter-spacing: 4px; font-weight: 700; font-size:14px; text-transform:uppercase;">Get a tailored quote</span>
+      <h1 data-aos="fade-up">Request a <span class="gold-text">Quote</span></h1>
+      <p data-aos="fade-up" data-aos-delay="100">Tell us about your sourcing needs — we'll respond within 24 hours with a professional, obligation-free quote.</p>
+    </div>
+  </section>
+
+  <!-- ===== QUOTE SECTION ===== -->
+  <section class="section-padding quote-section" id="quoteForm">
+    <div class="container">
+      <div class="quote-grid">
+        <!-- FORM -->
+        <div class="quote-form-card" data-aos="fade-right">
+          <span class="section-tag">start here</span>
+          <h2>Request a Quote</h2>
+          <p class="form-sub">Fill in the details below and our trade team will get back to you promptly.</p>
+
+          <form id="quoteForm" action="#" method="POST">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Full Name <span class="required">*</span></label>
+                <input type="text" name="name" placeholder="e.g. Ahmed Khan" required />
+              </div>
+              <div class="form-group">
+                <label>Company Name</label>
+                <input type="text" name="company" placeholder="Your company name" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Email Address <span class="required">*</span></label>
+                <input type="email" name="email" placeholder="you@company.com" required />
+              </div>
+              <div class="form-group">
+                <label>Phone Number <span class="required">*</span></label>
+                <input type="tel" name="phone" placeholder="+92 300 1234567" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Which division are you interested in? <span class="required">*</span></label>
+              <select name="division" required>
+                <option value="">— Select —</option>
+                <option value="food">Food Import & Export</option>
+                <option value="industrial">Industrial Spare Parts</option>
+                <option value="general">General Trading</option>
+                <option value="gym">Gym Equipment</option>
+                <option value="other">Other / Multiple</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Product / Service description <span class="required">*</span></label>
+              <textarea name="description" placeholder="Describe what you're looking for: quantities, specifications, target markets, etc." required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Target destination / port</label>
+              <input type="text" name="destination" placeholder="e.g. Karachi, Dubai, Rotterdam" />
+            </div>
+
+            <button type="submit" class="btn-gold form-submit">
+              <i class="fas fa-paper-plane" style="margin-right:10px;"></i> Send Quote Request
+            </button>
+
+            <p style="font-size:13px; color:var(--text-muted); margin-top:16px; text-align:center;">
+              <i class="fas fa-lock" style="margin-right:6px;"></i> Your information is safe with us.
+            </p>
+          </form>
+        </div>
+
+        <!-- SIDEBAR INFO -->
+        <div class="quote-side" data-aos="fade-left">
+          <div class="info-box">
+            <h4><i class="fas fa-clock" style="color:var(--gold); margin-right:10px;"></i> Quick Response</h4>
+            <p>We aim to reply within <strong>24 hours</strong> with a detailed quote and next steps.</p>
+          </div>
+
+          <div class="info-box">
+            <h4><i class="fas fa-handshake" style="color:var(--gold); margin-right:10px;"></i> What to expect</h4>
+            <ul style="list-style:none; color: var(--text-muted); font-size:15px; line-height:1.9;">
+              <li><i class="fas fa-check-circle" style="color:var(--gold); margin-right:10px;"></i> Competitive pricing</li>
+              <li><i class="fas fa-check-circle" style="color:var(--gold); margin-right:10px;"></i> Sourcing & logistics support</li>
+              <li><i class="fas fa-check-circle" style="color:var(--gold); margin-right:10px;"></i> Compliance & documentation</li>
+              <li><i class="fas fa-check-circle" style="color:var(--gold); margin-right:10px;"></i> Tailored trade solutions</li>
+            </ul>
+          </div>
+
+          <div class="info-box">
+            <h4><i class="fas fa-phone-alt" style="color:var(--gold); margin-right:10px;"></i> Prefer to call?</h4>
+            <p class="contact-line"><i class="fas fa-phone"></i> +92-333-306-5795</p>
+            <p class="contact-line"><i class="fas fa-envelope"></i> info@stventurespk.com</p>
+            <p style="margin-top:14px; font-size:14px; color:var(--text-muted);">
+              Our trade desk is available Monday–Friday, 9am–6pm (PKT).
+            </p>
+          </div>
+
+          <div class="benefits-mini">
+            <div class="item"><i class="fas fa-globe-americas"></i> Global sourcing</div>
+            <div class="item"><i class="fas fa-shield-alt"></i> SBP & AML compliant</div>
+            <div class="item"><i class="fas fa-truck"></i> Logistics support</div>
+            <div class="item"><i class="fas fa-star"></i> Trusted partner</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">
+            <img src="logo.jpg" alt="Sahiba Trade Ventures logo" onerror="this.style.display='none'" />
+            <span class="logo-text">
+              <span class="gold">SAHIBA</span>
+              <span class="light">TRADE</span>
+              <span class="small">VENTURES</span>
+            </span>
+          </div>
+          <p>Global Import • Export • Industrial Supply • General Trading</p>
+          <p style="margin-top:8px; font-size:13px; color: var(--text-muted);">
+            Professional trading company delivering global sourcing and supply chain solutions.
+          </p>
+        </div>
+
+        <div>
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="index.html#divisions">Divisions</a></li>
+            <li><a href="index.html#network">Network</a></li>
+            <li><a href="index.html#features">Why Us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Contact</h4>
+          <div class="footer-contact">
+            <p><i class="fas fa-phone"></i> +92-333-306-5795</p>
+            <p><i class="fas fa-envelope"></i> info@stventurespk.com</p>
+            <p><i class="fas fa-globe"></i> www.stventurespk.com</p>
+          </div>
+        </div>
+
+        <div>
+          <h4>Location</h4>
+          <div class="footer-contact">
+            <p><i class="fas fa-map-marker-alt"></i> Karachi, Pakistan</p>
+            <p style="font-size:13px; color:var(--text-muted); margin-top:12px;">
+              Serving international markets with <br>professional trade solutions.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        &copy; 2026 SAHIBA TRADE VENTURES. All rights reserved. Developed by <a
+          href="https://thehaysolutions.com" target="_blank" rel="noopener noreferrer">The Hay Solutions</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+
+  <script>
+    // ===== LENIS SMOOTH SCROLL =====
+    const lenis = new Lenis({
+      duration: 2.8,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    lenis.on('scroll', () => {
+      if (window.AOS) AOS.refresh();
+    });
+
+    // ===== AOS =====
+    AOS.init({
+      duration: 700,
+      once: true,
+      easing: 'ease-out-cubic',
+      offset: 60
+    });
+
+    // ===== NAVBAR SCROLL =====
+    const navbar = document.getElementById('navbar');
+    lenis.on('scroll', ({ scroll }) => {
+      if (scroll > 50) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    });
+
+    // ===== HAMBURGER =====
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    const setMenuState = (isOpen) => {
+      navLinks.classList.toggle('active', isOpen);
+      hamburger.setAttribute('aria-expanded', String(isOpen));
+      document.body.classList.toggle('menu-open', isOpen);
+    };
+
+    hamburger.addEventListener('click', () => setMenuState(!navLinks.classList.contains('active')));
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        setMenuState(false);
+      });
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') setMenuState(false);
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) setMenuState(false);
+    });
+
+    // ===== SMOOTH ANCHOR SCROLL =====
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        const target = document.querySelector(targetId);
+        if (target) {
+          e.preventDefault();
+          lenis.scrollTo(target, { offset: -80 });
+        }
+      });
+    });
+
+    // ===== FORM SUBMIT (demo) =====
+    document.getElementById('quoteForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Simple feedback – replace with actual submission logic
+      alert('✅ Thank you! Your quote request has been sent. Our team will contact you within 24 hours.');
+      this.reset();
+    });
+  </script>
+
+</body>
+</html>

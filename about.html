@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us | SAHIBA TRADE VENTURES</title>
+
+    <!-- Google Fonts: Syne (display) + Inter (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <!-- AOS Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <!-- Favicon (logo from project folder) -->
+    <link rel="icon" type="image/png" href="logo.jpg" />
+
+    <style>
+        /* ===== CSS VARIABLES (same brand palette as index.html) ===== */
+        :root {
+            --navy: #07234E;
+            --navy-soft: #0E3163;
+            --cream: #F1EEE6;
+            --cream-deep: #E6E0D2;
+            --gold: #C19243;
+            --gold-light: #D6AE6C;
+            --bronze: #866132;
+            --gold-glow: rgba(193, 146, 67, 0.25);
+            --navy-glow: rgba(7, 35, 78, 0.08);
+
+            --text-main: var(--navy);
+            --text-muted: #4A5A76;
+
+            --font-display: 'Syne', sans-serif;
+            --font-sans: 'Inter', sans-serif;
+        }
+
+        /* ===== RESET & BASE (same as index.html) ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: auto;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--cream);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        body.menu-open { overflow: hidden; }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .gold {
+            color: var(--gold);
+        }
+
+        .gold-text {
+            background: linear-gradient(135deg, var(--bronze), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        .section-tag {
+            font-size: 13px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--bronze);
+            font-weight: 700;
+            font-family: var(--font-sans);
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-top: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-title .gold {
+            font-family: var(--font-display);
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-top: 16px;
+            line-height: 1.8;
+            font-size: 17px;
+        }
+
+        .center-text {
+            text-align: center;
+        }
+
+        .center-text .section-subtitle {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== BUTTONS (same as index.html) ===== */
+        .btn-gold {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold-light), var(--bronze));
+            color: var(--cream);
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: var(--font-sans);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 40px var(--gold-glow);
+        }
+
+        .btn-outline {
+            display: inline-block;
+            background: transparent;
+            color: var(--navy);
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 15px;
+            border: 2px solid rgba(7, 35, 78, 0.18);
+            cursor: pointer;
+            transition: all 0.35s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: var(--font-sans);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--bronze);
+            color: var(--bronze);
+            background: rgba(193, 146, 67, 0.06);
+            transform: translateY(-3px);
+        }
+
+        /* ===== NAVBAR (same as index.html) ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 22px 0;
+            z-index: 1000;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+
+        .navbar.scrolled {
+            background: rgba(241, 238, 230, 0.9);
+            backdrop-filter: blur(20px);
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(7, 35, 78, 0.08);
+            box-shadow: 0 4px 30px rgba(7, 35, 78, 0.04);
+        }
+
+        .navbar.scrolled .nav-links a {
+            color: #c19243 !important;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+
+        .logo-text {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-family: var(--font-display);
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .logo-text .light {
+            font-weight: 500;
+            color: #5c86c7;
+        }
+
+        .logo-text .small {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-muted);
+            border-left: 2px solid rgba(7, 35, 78, 0.15);
+            padding-left: 10px;
+            margin-left: 6px;
+            letter-spacing: 2px;
+            font-family: var(--font-sans);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--navy);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--gold-light);
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: transparent;
+            border: 2.5px solid #c19243;
+            color: #c19243;
+            padding: 10px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 13px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: var(--font-sans);
+        }
+
+        .nav-cta:hover {
+            background: var(--bronze);
+            color: var(--cream);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 2px;
+            background: var(--navy);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+        .navbar .nav-links.active { animation: menuReveal 0.35s ease both; }
+        @keyframes menuReveal { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
+        [data-aos] { will-change: transform, opacity; }
+        .btn-gold, .btn-outline, .nav-cta { position: relative; overflow: hidden; }
+        .btn-gold::before, .btn-outline::before, .nav-cta::before { content: ''; position: absolute; inset: 0; transform: translateX(-110%); background: rgba(255,255,255,0.16); transition: transform 0.45s ease; }
+        .btn-gold:hover::before, .btn-outline:hover::before, .nav-cta:hover::before { transform: translateX(110%); }
+
+        /* ===== PAGE HERO (About subpage) ===== */
+        .page-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: url('https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgb(0 0 0 / 90%) 0%, rgb(0 0 0 / 74%) 55%, rgba(134, 97, 50, 0.55) 100%);
+        }
+
+        .page-hero .container {
+            position: relative;
+            z-index: 2;
+            padding-top: 100px;
+            padding-bottom: 60px;
+        }
+
+        .hero-tag {
+            font-size: 14px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            font-weight: 700;
+        }
+
+        .page-hero h1 {
+            font-family: var(--font-display);
+            font-size: 64px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-top: 18px;
+            max-width: 720px;
+            color: var(--cream);
+            letter-spacing: -1px;
+        }
+
+        .page-hero h1 .gold-text {
+            display: block;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-hero p {
+            font-size: 19px;
+            color: rgba(241, 238, 230, 0.82);
+            max-width: 620px;
+            margin-top: 24px;
+            line-height: 1.8;
+        }
+
+        .breadcrumb {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 24px;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(241, 238, 230, 0.55);
+            font-weight: 600;
+        }
+
+        .breadcrumb a {
+            color: var(--gold-light);
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--cream);
+        }
+
+        .breadcrumb i {
+            font-size: 10px;
+            color: var(--gold);
+        }
+
+        /* ===== ABOUT STORY / COMPANY OVERVIEW ===== */
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .story-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 460px;
+            background: url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+        }
+
+        .story-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            opacity: 0.4;
+            transform: scale(0.95);
+        }
+
+        .story-text .section-subtitle {
+            max-width: 100%;
+        }
+
+        .story-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #FFFFFF;
+            border: 1px solid rgba(7, 35, 78, 0.06);
+            box-shadow: 0 4px 24px rgba(7, 35, 78, 0.04);
+            padding: 12px 20px;
+            border-radius: 50px;
+            margin-top: 28px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .story-badge i {
+            color: var(--bronze);
+            font-size: 18px;
+        }
+
+        /* ===== MISSION & VISION ===== */
+        .mission-section {
+            background: var(--navy);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 15% 20%, rgba(193, 146, 67, 0.12), transparent 45%),
+                radial-gradient(circle at 85% 80%, rgba(193, 146, 67, 0.08), transparent 45%);
+        }
+
+        .mission-section .section-tag {
+            color: var(--gold-light);
+        }
+
+        .mission-section .section-title {
+            color: var(--cream);
+        }
+
+        .mission-section .section-subtitle {
+            color: rgba(241, 238, 230, 0.65);
+        }
+
+        .mission-grid {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .mission-card {
+            background: rgba(241, 238, 230, 0.04);
+            padding: 40px 34px;
+            border-radius: 20px;
+            border: 1px solid rgba(241, 238, 230, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .mission-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-6px);
+            background: rgba(241, 238, 230, 0.07);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .mission-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(193, 146, 67, 0.15);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: var(--gold-light);
+            margin-bottom: 20px;
+        }
+
+        .mission-card h3 {
+            font-family: var(--font-display);
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--cream);
+            margin-bottom: 14px;
+        }
+
+        .mission-card p {
+            color: rgba(241, 238, 230, 0.6);
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        /* ===== CORE VALUES ===== */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 50px;
+        }
+
+        .value-card {
+            background: #FFFFFF;
+            padding: 32px 24px;
+            border-radius: 20px;
+            border: 1px solid rgba(7, 35, 78, 0.06);
+            text-align: center;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 24px rgba(7, 35, 78, 0.03);
+        }
+
+        .value-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px var(--gold-glow);
+        }
+
+        .value-card .icon {
+            font-size: 40px;
+            color: var(--bronze);
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .value-card h4 {
+            font-family: var(--font-display);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .value-card p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* ===== STATS (counters) ===== */
+        .stats-band {
+            background: var(--cream-deep);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            background: #FFFFFF;
+            padding: 24px 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(7, 35, 78, 0.06);
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 24px rgba(7, 35, 78, 0.04);
+        }
+
+        .stat-item:hover {
+            border-color: var(--gold);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 34px var(--gold-glow);
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--bronze);
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 6px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* ===== MILESTONES / TIMELINE ===== */
+        .milestone-section {
+            background: var(--cream);
+        }
+
+        .timeline {
+            position: relative;
+            margin-top: 70px;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--gold), var(--bronze));
+            opacity: 0.4;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            background: #FFFFFF;
+            padding: 28px 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(7, 35, 78, 0.06);
+            box-shadow: 0 4px 24px rgba(7, 35, 78, 0.03);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            border-color: var(--gold);
+            transform: translateX(6px);
+            box-shadow: 0 12px 34px var(--gold-glow);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -37px;
+            top: 34px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--gold);
+            border: 3px solid var(--cream);
+            box-shadow: 0 0 0 2px var(--gold-light);
+        }
+
+        .timeline-year {
+            font-family: var(--font-display);
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--bronze);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .timeline-item h4 {
+            font-family: var(--font-display);
+            font-size: 19px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .timeline-item p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* ===== LEADERSHIP / TEAM ===== */
+        .leadership-section {
+            background: var(--navy);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .leadership-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 85% 15%, rgba(193, 146, 67, 0.1), transparent 50%);
+        }
+
+        .leadership-section .section-tag {
+            color: var(--gold-light);
+        }
+
+        .leadership-section .section-title {
+            color: var(--cream);
+        }
+
+        .leadership-section .section-subtitle {
+            color: rgba(241, 238, 230, 0.65);
+        }
+
+        .team-grid {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .team-card {
+            background: rgba(241, 238, 230, 0.04);
+            padding: 40px 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(241, 238, 230, 0.1);
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .team-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-8px);
+            background: rgba(241, 238, 230, 0.07);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .team-avatar {
+            width: 134px;
+            height: 84px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--bronze));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            font-weight: 800;
+            color: var(--navy);
+            font-family: var(--font-display);
+            border: 3px solid var(--gold-light);
+        }
+
+        .team-card h4 {
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--cream);
+            margin-bottom: 6px;
+        }
+
+        .team-card .team-role {
+            color: var(--gold-light);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .team-card p {
+            color: rgba(241, 238, 230, 0.6);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* ===== COMPLIANCE / CERTIFICATIONS ===== */
+        .compliance-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 50px;
+        }
+
+        .compliance-card {
+            background: #FFFFFF;
+            padding: 30px 24px;
+            border-radius: 16px;
+            border: 1px solid rgba(7, 35, 78, 0.06);
+            text-align: center;
+            transition: all 0.35s ease;
+            box-shadow: 0 4px 24px rgba(7, 35, 78, 0.03);
+        }
+
+        .compliance-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 14px 34px var(--gold-glow);
+        }
+
+        .compliance-card i {
+            font-size: 42px;
+            color: var(--bronze);
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .compliance-card h4 {
+            font-family: var(--font-display);
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .compliance-card p {
+            color: var(--text-muted);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* ===== CEO MESSAGE (same style as index.html) ===== */
+        .ceo-section {
+            background: var(--navy);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ceo-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 55%;
+            height: 100%;
+            background: radial-gradient(circle at top right, rgba(193, 146, 67, 0.12), transparent 70%);
+        }
+
+        .ceo-card {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(241, 238, 230, 0.05);
+            backdrop-filter: blur(20px);
+            padding: 60px 50px;
+            border-radius: 30px;
+            border: 1px solid rgba(193, 146, 67, 0.25);
+            text-align: center;
+        }
+
+        .ceo-card .quote-icon {
+            font-size: 48px;
+            color: var(--gold-light);
+            opacity: 0.6;
+            margin-bottom: 20px;
+        }
+
+        .ceo-card blockquote {
+            font-family: var(--font-display);
+            font-size: 32px;
+            font-weight: 600;
+            line-height: 1.4;
+            color: var(--cream);
+        }
+
+        .ceo-card blockquote .gold {
+            color: var(--gold-light);
+        }
+
+        .ceo-card .ceo-name {
+            margin-top: 30px;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--cream);
+            font-family: var(--font-display);
+        }
+
+        .ceo-card .ceo-title {
+            color: rgba(241, 238, 230, 0.6);
+            font-size: 14px;
+        }
+
+        .ceo-card .declaration {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(241, 238, 230, 0.1);
+            color: rgba(241, 238, 230, 0.55);
+            font-size: 14px;
+            line-height: 1.8;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== CTA BAND ===== */
+        .cta-band {
+            background: linear-gradient(135deg, var(--cream-deep), var(--cream));
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-band::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 10% 90%, rgba(193, 146, 67, 0.12), transparent 40%),
+                radial-gradient(circle at 90% 10%, rgba(7, 35, 78, 0.06), transparent 40%);
+        }
+
+        .cta-band .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 36px;
+            flex-wrap: wrap;
+        }
+
+        /* ===== FOOTER (same as index.html) ===== */
+        .footer {
+            background: var(--cream-deep);
+            padding: 70px 0 30px;
+            border-top: 1px solid rgba(7, 35, 78, 0.06);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr 1.5fr;
+            gap: 40px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid rgba(7, 35, 78, 0.08);
+        }
+
+        .footer-brand .logo img {
+            height: 44px;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-top: 14px;
+            line-height: 1.8;
+            max-width: 280px;
+        }
+
+        .footer h4 {
+            font-family: var(--font-display);
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer ul {
+            list-style: none;
+        }
+
+        .footer ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer ul a {
+            color: var(--text-muted);
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer ul a:hover {
+            color: var(--bronze);
+        }
+
+        .footer-contact p {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .footer-contact i {
+            color: var(--bronze);
+            width: 24px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .compliance-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                background: rgba(241, 238, 230, 0.98) !important;
+                backdrop-filter: blur(20px);
+                padding: 14px 0 !important;
+                box-shadow: 0 4px 30px rgba(7, 35, 78, 0.04);
+                border-bottom: 1px solid rgba(7, 35, 78, 0.08);
+            }
+
+            .logo-text {
+                display: none;
+            }
+
+            .logo img {
+                height: 36px;
+            }
+
+            .hamburger span {
+                background: var(--navy) !important;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-links a {
+                color: var(--navy);
+                font-size: 16px;
+            }
+
+            .nav-cta {
+                width: 100%;
+                text-align: center;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(241, 238, 230, 0.98);
+                backdrop-filter: blur(20px);
+                padding: 30px 24px;
+                gap: 20px;
+                border-bottom: 1px solid rgba(7, 35, 78, 0.08);
+                box-shadow: 0 18px 35px rgba(7, 35, 78, 0.12);
+            }
+
+            .page-hero h1 {
+                font-size: 40px;
+            }
+
+            .story-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .story-image {
+                height: 260px;
+            }
+
+            .mission-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .ceo-card {
+                padding: 30px 20px;
+            }
+
+            .ceo-card blockquote {
+                font-size: 24px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .compliance-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .page-hero h1 {
+                font-size: 32px;
+            }
+
+            .container {
+                padding: 0 18px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="logo.jpg" alt="Sahiba Trade Ventures logo" onerror="this.style.display='none'" />
+                <span class="logo-text">
+                    <span class="gold">SAHIBA</span>
+                    <span class="light">TRADE</span>
+                    <span class="small">VENTURES</span>
+                </span>
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="services.html">Our Services</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><button class="nav-cta">Get Quote</button></li>
+            </ul>
+
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== PAGE HERO ===== -->
+    <section class="page-hero">
+        <div class="container">
+            <span class="hero-tag" data-aos="fade-up">Who We Are</span>
+            <h1 data-aos="fade-up" data-aos-delay="100">
+                About <span class="gold-text">Sahiba Trade Ventures</span>
+            </h1>
+            <p data-aos="fade-up" data-aos-delay="200">
+                A professionally managed international trading company based in Pakistan, dedicated to connecting
+                continents and delivering excellence across global supply chains.
+            </p>
+            <div class="breadcrumb" data-aos="fade-up" data-aos-delay="300">
+                <a href="index.html">Home</a>
+                <i class="fas fa-chevron-right"></i>
+                <span>About Us</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== COMPANY STORY ===== -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="story-grid">
+                <div class="story-image" data-aos="fade-left" data-aos-delay="100"></div>
+                <div class="story-text" data-aos="fade-right">
+                    <span class="section-tag">Our Story</span>
+                    <h2 class="section-title">
+                        Built on <span class="gold">Trust & Excellence</span>
+                    </h2>
+                    <p class="section-subtitle">
+                        Sahiba Trade Ventures was established with a clear mission: to bridge markets, connect
+                        continents, and deliver quality products with professional integrity. From our base in
+                        Karachi, Pakistan, we serve a growing network of global partners across Asia, the Middle
+                        East, Europe, and Africa.
+                    </p>
+                    <p class="section-subtitle" style="margin-top:12px;">
+                        Our expertise spans food import & export, industrial spare parts, general trading, and
+                        commercial gym equipment. Every transaction is managed with full compliance, transparent
+                        documentation, and a commitment to lasting relationships.
+                    </p>
+                    <div class="story-badge">
+                        <i class="fas fa-award"></i>
+                        <span>Committed to International Trade Standards</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MISSION & VISION ===== -->
+    <section class="section-padding mission-section">
+        <div class="container">
+            <div class="center-text" data-aos="fade-up">
+                <span class="section-tag">Purpose & Direction</span>
+                <h2 class="section-title">
+                    Our <span class="gold">Mission & Vision</span>
+                </h2>
+                <p class="section-subtitle">Guided by professionalism and a global perspective</p>
+            </div>
+
+            <div class="mission-grid">
+                <div class="mission-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="mission-icon"><i class="fas fa-bullseye"></i></div>
+                    <h3>Our Mission</h3>
+                    <p>
+                        To deliver reliable, compliant, and cost-effective trading solutions that create value for
+                        our clients, suppliers, and partners. We strive to exceed expectations through quality
+                        products, efficient logistics, and transparent business practices.
+                    </p>
+                </div>
+                <div class="mission-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="mission-icon"><i class="fas fa-eye"></i></div>
+                    <h3>Our Vision</h3>
+                    <p>
+                        To become a globally recognized and trusted trading organization, known for sustainable
+                        solutions, ethical dealing, and long-term partnerships that span continents and industries.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CORE VALUES ===== -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="center-text" data-aos="fade-up">
+                <span class="section-tag">What Guides Us</span>
+                <h2 class="section-title">
+                    Core <span class="gold">Values</span>
+                </h2>
+                <p class="section-subtitle">The principles that shape every partnership and transaction</p>
+            </div>
+
+            <div class="values-grid">
+                <div class="value-card" data-aos="fade-up" data-aos-delay="100">
+                    <span class="icon"><i class="fas fa-shield-alt"></i></span>
+                    <h4>Compliance</h4>
+                    <p>Strict adherence to SBP, KYC, AML, and international trade regulations in all activities.</p>
+                </div>
+                <div class="value-card" data-aos="fade-up" data-aos-delay="200">
+                    <span class="icon"><i class="fas fa-handshake"></i></span>
+                    <h4>Integrity</h4>
+                    <p>Transparent, honest dealing built on mutual trust and professional accountability.</p>
+                </div>
+                <div class="value-card" data-aos="fade-up" data-aos-delay="300">
+                    <span class="icon"><i class="fas fa-trophy"></i></span>
+                    <h4>Excellence</h4>
+                    <p>Delivering quality products and services that consistently meet international standards.</p>
+                </div>
+                <div class="value-card" data-aos="fade-up" data-aos-delay="400">
+                    <span class="icon"><i class="fas fa-globe-americas"></i></span>
+                    <h4>Global Reach</h4>
+                    <p>Fostering sustainable relationships with partners across four continents.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== STATS BAND ====-->
+    <section class="section-padding stats-band">
+        <div class="container">
+            <div class="center-text" data-aos="fade-up">
+                <span class="section-tag">At A Glance</span>
+                <h2 class="section-title">
+                    Our <span class="gold">Achievements</span>
+                </h2>
+                <p class="section-subtitle">Numbers that reflect our commitment and growth</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="stat-number" data-count="50">0</div>
+                    <div class="stat-label">Global Partners</div>
+                </div>
+                <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="stat-number" data-count="15">0</div>
+                    <div class="stat-label">Countries Served</div>
+                </div>
+                <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="stat-number" data-count="100">0</div>
+                    <div class="stat-label">% Compliance</div>
+                </div>
+                <div class="stat-item" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="stat-number" data-count="10">0</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MILESTONES / TIMELINE ===== -->
+    <section class="section-padding milestone-section">
+        <div class="container">
+            <div class="center-text" data-aos="fade-up">
+                <span class="section-tag">Our Journey</span>
+                <h2 class="section-title">
+                    Key <span class="gold">Milestones</span>
+                </h2>
+                <p class="section-subtitle">Steady growth built on professionalism and global partnerships</p>
+            </div>
+
+            <div class="timeline" data-aos="fade-up">
+                <div class="timeline-item">
+                    <div class="timeline-year">Foundation</div>
+                    <h4>Establishment of Sahiba Trade Ventures</h4>
+                    <p>Founded in Karachi, Pakistan, with a vision to connect domestic production with international
+                        markets through professional trading practices.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">Early Growth</div>
+                    <h4>First Global Partnerships</h4>
+                    <p>Established sourcing partners across Asia and the Middle East, building a foundation of
+                        trust, compliance, and reliable logistics.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">Expansion</div>
+                    <h4>Diversification of Divisions</h4>
+                    <p>Expanded into industrial spare parts, general trading, and commercial gym equipment,
+                        broadening our service spectrum across industries.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">Today</div>
+                    <h4>Global Network & Recognition</h4>
+                    <p>Operating across Asia, Middle East, Europe, and Africa with a reputation for quality,
+                        compliance, and sustainable partnerships.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== LEADERSHIP / TEAM ===== -->
+    <section class="section-padding leadership-section">
+        <div class="container">
+            <div class="center-text" data-aos="fade-up">
+                <span class="section-tag">Leadership</span>
+                <h2 class="section-title">
+                    Meet Our <span class="gold">Team</span>
+                </h2>
+                <p class="section-subtitle">Experienced professionals guiding our global operations</p>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="team-avatar">CEO</div>
+                    <h4>Chief Executive Officer</h4>
+                    <div class="team-role">Leadership & Strategy</div>
+                    <p>Leads the company's vision, strategic direction, and international partnerships.</p>
+                </div>
+                <div class="team-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="team-avatar">TD</div>
+                    <h4>Trading Director</h4>
+                    <div class="team-role">Sourcing & Supply</div>
+                    <p>Oversees sourcing, supplier relationships, and the quality of all traded goods.</p>
+                </div>
+                <div class="team-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="team-avatar">OM</div>
+                    <h4>Operations Manager</h4>
+                    <div class="team-role">Logistics & Compliance</div>
+                    <p>Manages logistics, documentation, customs clearance, and regulatory compliance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== COMPLIANCE / CERTIFICATIONS ===== -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="center-text" data-aos="fade-up">
+                <span class="section-tag">Standards</span>
+                <h2 class="section-title">
+                    Compliance & <span class="gold">Assurance</span>
+                </h2>
+                <p class="section-subtitle">Operating to the highest international trade standards</p>
+            </div>
+
+            <div class="compliance-grid">
+                <div class="compliance-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-landmark"></i>
+                    <h4>SBP Compliant</h4>
+                    <p>Fully aligned with State Bank of Pakistan regulatory requirements for trade finance.</p>
+                </div>
+                <div class="compliance-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-user-check"></i>
+                    <h4>KYC Verified</h4>
+                    <p>Complete customer due diligence and identity verification on all transactions.</p>
+                </div>
+                <div class="compliance-card" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-balance-scale"></i>
+                    <h4>AML Compliant</h4>
+                    <p>Strict anti-money-laundering controls and ongoing transaction monitoring.</p>
+                </div>
+                <div class="compliance-card" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fas fa-file-contract"></i>
+                    <h4>Documented Trade</h4>
+                    <p>Full documentation and transparency on every shipment, from origin to delivery.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CEO MESSAGE ===== -->
+    <section class="section-padding ceo-section">
+        <div class="container">
+            <div class="ceo-card" data-aos="zoom-in" data-aos-delay="100">
+                <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
+                <blockquote>
+                    "Building sustainable business partnerships through <span class="gold">professionalism</span> and
+                    <span class="gold">excellence</span>."
+                </blockquote>
+                <div class="ceo-name">— CEO & Director</div>
+                <div class="ceo-title">SAHIBA TRADE VENTURES</div>
+                <div class="declaration">
+                    <strong>Official Declaration:</strong> This corporate profile is issued for banking, trade finance,
+                    international business, and business development purposes. All activities are conducted in
+                    accordance with applicable trade laws and compliance standards.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA BAND ===== -->
+    <section class="section-padding cta-band">
+        <div class="container">
+            <span class="section-tag" data-aos="fade-up">Let's Work Together</span>
+            <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">
+                Ready to Start a <span class="gold">Partnership?</span>
+            </h2>
+            <p class="section-subtitle center-text" data-aos="fade-up" data-aos-delay="200"
+                style="margin-left:auto; margin-right:auto;">
+                Connect with us to explore sourcing opportunities, trade partnerships, or supply chain solutions
+                tailored to your business.
+            </p>
+            <div class="cta-buttons" data-aos="fade-up" data-aos-delay="300">
+                <a href="index.html#divisions" class="btn-gold">Explore Services</a>
+                <a href="#footer" class="btn-outline">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <img src="logo.jpg" alt="Sahiba Trade Ventures logo" onerror="this.style.display='none'" />
+                        <span class="logo-text">
+                            <span class="gold">SAHIBA</span>
+                            <span class="light">TRADE</span>
+                            <span class="small">VENTURES</span>
+                        </span>
+                    </div>
+                    <p>Global Import • Export • Industrial Supply • General Trading</p>
+                    <p style="margin-top:8px; font-size:13px; color: var(--text-muted);">
+                        Professional trading company delivering global sourcing and supply chain solutions.
+                    </p>
+                </div>
+
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="index.html#divisions">Divisions</a></li>
+                        <li><a href="index.html#network">Network</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Contact</h4>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-phone"></i> +92-333-306-5795</p>
+                        <p><i class="fas fa-envelope"></i> info@stventurespk.com</p>
+                        <p><i class="fas fa-globe"></i> www.stventurespk.com</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h4>Location</h4>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-map-marker-alt"></i> Karachi, Pakistan</p>
+                        <p style="font-size:13px; color:var(--text-muted); margin-top:12px;">
+                            Serving international markets with <br>professional trade solutions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                &copy; 2026 SAHIBA TRADE VENTURES. All rights reserved. Developed by <a
+                    href="https://thehaysolutions.com" target="_blank" rel="noopener noreferrer">The Hay Solutions</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+
+    <script>
+        // ===== LENIS SMOOTH SCROLL =====
+        const lenis = new Lenis({
+            duration: 3,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothWheel: true,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Keep AOS in sync with Lenis-driven scroll
+        lenis.on('scroll', () => {
+            if (window.AOS) AOS.refresh();
+        });
+
+        // ===== AOS INIT =====
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'ease-out-cubic',
+            offset: 80
+        });
+
+        // ===== NAVBAR SCROLL ====
+        const navbar = document.getElementById('navbar');
+        lenis.on('scroll', ({ scroll }) => {
+            if (scroll > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ===== HAMBURGER MENU ====
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        const setMenuState = (isOpen) => {
+            navLinks.classList.toggle('active', isOpen);
+            hamburger.setAttribute('aria-expanded', String(isOpen));
+            document.body.classList.toggle('menu-open', isOpen);
+        };
+
+        hamburger.addEventListener('click', () => setMenuState(!navLinks.classList.contains('active')));
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                setMenuState(false);
+            });
+        });
+
+        document.querySelector('.nav-cta').addEventListener('click', () => { window.location.href = 'get-quote.html'; });
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') setMenuState(false);
+        });
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) setMenuState(false);
+        });
+
+        // ===== COUNTER ANIMATION ====
+        const counters = document.querySelectorAll('.stat-number');
+
+        const animateCounter = (el) => {
+            const target = parseInt(el.getAttribute('data-count'));
+            const duration = 2000;
+            const startTime = performance.now();
+
+            const update = (time) => {
+                const elapsed = time - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const current = Math.floor(progress * target);
+
+                if (target === 50 || target === 100) {
+                    el.textContent = current + '+';
+                } else {
+                    el.textContent = current;
+                }
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    el.textContent = (target === 50 || target === 100) ? target + '+' : target;
+                }
+            };
+
+            requestAnimationFrame(update);
+        };
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => {
+            counterObserver.observe(counter);
+        });
+
+        // ===== SMOOTH ANCHOR SCROLL VIA LENIS ====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    lenis.scrollTo(target, { offset: -80 });
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
