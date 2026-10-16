@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About Us | SAHIBA TRADE VENTURES</title>
 
-    <!-- Google Fonts: Syne (display) + Inter (body) -->
+    <!-- Google Fonts: Fraunces (display) + Manrope (body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
-        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet" />
 
     <!-- Font Awesome -->
@@ -37,8 +37,8 @@
             --text-main: var(--navy);
             --text-muted: #4A5A76;
 
-            --font-display: 'Syne', sans-serif;
-            --font-sans: 'Inter', sans-serif;
+            --font-display: 'Fraunces', Georgia, serif;
+            --font-sans: 'Manrope', sans-serif;
         }
 
         /* ===== RESET & BASE (same as index.html) ===== */
@@ -751,8 +751,9 @@
         }
 
         .team-avatar {
-            width: 134px;
-            height: 84px;
+            width: 120px;
+            height: 120px;
+            overflow: hidden;
             margin: 0 auto 20px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--gold), var(--bronze));
@@ -764,6 +765,13 @@
             color: var(--navy);
             font-family: var(--font-display);
             border: 3px solid var(--gold-light);
+        }
+
+        .team-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
         }
 
         .team-card h4 {
@@ -833,7 +841,7 @@
             line-height: 1.6;
         }
 
-        /* ===== CEO MESSAGE (same style as index.html) ===== */
+        /* ===== CEO MESSAGE ===== */
         .ceo-section {
             background: var(--navy);
             position: relative;
@@ -845,36 +853,126 @@
             position: absolute;
             top: 0;
             right: 0;
-            width: 55%;
+            width: 60%;
             height: 100%;
-            background: radial-gradient(circle at top right, rgba(193, 146, 67, 0.12), transparent 70%);
+            background: radial-gradient(circle at top right, rgba(193, 146, 67, 0.16), transparent 70%);
+        }
+
+        .ceo-section::after {
+            content: '';
+            position: absolute;
+            bottom: -120px;
+            left: -120px;
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            border: 1px solid rgba(193, 146, 67, 0.15);
+            box-shadow: 0 0 0 40px rgba(193, 146, 67, 0.03), 0 0 0 90px rgba(193, 146, 67, 0.02);
         }
 
         .ceo-card {
             position: relative;
             z-index: 1;
-            max-width: 900px;
+            max-width: 1080px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 64px;
+            align-items: center;
             background: rgba(241, 238, 230, 0.05);
             backdrop-filter: blur(20px);
-            padding: 60px 50px;
-            border-radius: 30px;
+            padding: 56px;
+            border-radius: 32px;
             border: 1px solid rgba(193, 146, 67, 0.25);
-            text-align: center;
+            text-align: left;
+        }
+
+        .ceo-portrait {
+            position: relative;
+            padding: 0 18px 18px 0;
+        }
+
+        .ceo-portrait::before {
+            content: '';
+            position: absolute;
+            top: 18px;
+            left: 18px;
+            right: 0;
+            bottom: 0;
+            border: 2px solid var(--gold);
+            border-radius: 26px;
+            opacity: 0.7;
+        }
+
+        .ceo-frame {
+            position: relative;
+            aspect-ratio: 4 / 5;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+        }
+
+        .ceo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 15%;
+            display: block;
+        }
+
+        .ceo-frame::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(7, 35, 78, 0.55), transparent 40%);
+        }
+
+        .ceo-badge {
+            position: absolute;
+            left: 18px;
+            bottom: 36px;
+            z-index: 2;
+            padding: 10px 18px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            color: var(--navy);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        .ceo-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--gold-light);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+        }
+
+        .ceo-eyebrow::before {
+            content: '';
+            width: 36px;
+            height: 2px;
+            background: var(--gold-light);
         }
 
         .ceo-card .quote-icon {
-            font-size: 48px;
+            font-size: 44px;
             color: var(--gold-light);
-            opacity: 0.6;
-            margin-bottom: 20px;
+            opacity: 0.45;
+            margin: 22px 0 10px;
         }
 
         .ceo-card blockquote {
             font-family: var(--font-display);
-            font-size: 32px;
+            font-size: 34px;
             font-weight: 600;
-            line-height: 1.4;
+            line-height: 1.35;
             color: var(--cream);
         }
 
@@ -882,29 +980,67 @@
             color: var(--gold-light);
         }
 
+        .ceo-sign {
+            margin-top: 34px;
+            padding-left: 18px;
+            border-left: 3px solid var(--gold);
+        }
+
         .ceo-card .ceo-name {
-            margin-top: 30px;
-            font-weight: 700;
-            font-size: 18px;
-            color: var(--cream);
             font-family: var(--font-display);
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--cream);
+            letter-spacing: 0.3px;
         }
 
         .ceo-card .ceo-title {
-            color: rgba(241, 238, 230, 0.6);
-            font-size: 14px;
+            margin-top: 4px;
+            color: var(--gold-light);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1.6px;
+            text-transform: uppercase;
         }
 
         .ceo-card .declaration {
-            margin-top: 30px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(241, 238, 230, 0.1);
+            margin-top: 32px;
+            padding-top: 26px;
+            border-top: 1px solid rgba(241, 238, 230, 0.12);
             color: rgba(241, 238, 230, 0.55);
-            font-size: 14px;
+            font-size: 13.5px;
             line-height: 1.8;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+        }
+
+        @media (max-width: 900px) {
+            .ceo-card {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 36px 24px;
+                text-align: center;
+            }
+
+            .ceo-portrait {
+                max-width: 320px;
+                margin: 0 auto;
+            }
+
+            .ceo-eyebrow::before {
+                display: none;
+            }
+
+            .ceo-card blockquote {
+                font-size: 25px;
+            }
+
+            .ceo-sign {
+                border-left: 0;
+                padding-left: 0;
+            }
+
+            .ceo-card .ceo-name {
+                font-size: 26px;
+            }
         }
 
         /* ===== CTA BAND ===== */
@@ -1097,14 +1233,6 @@
 
             .section-title {
                 font-size: 32px;
-            }
-
-            .ceo-card {
-                padding: 30px 20px;
-            }
-
-            .ceo-card blockquote {
-                font-size: 24px;
             }
 
             .footer-grid {
@@ -1386,9 +1514,9 @@
 
             <div class="team-grid">
                 <div class="team-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="team-avatar">CEO</div>
-                    <h4>Chief Executive Officer</h4>
-                    <div class="team-role">Leadership & Strategy</div>
+                    <div class="team-avatar"><img src="CEO.png" alt="Chief Executive Officer"></div>
+                    <h4>Sarim Zaman</h4>
+                    <div class="team-role">Chief Executive Officer</div>
                     <p>Leads the company's vision, strategic direction, and international partnerships.</p>
                 </div>
                 <div class="team-card" data-aos="fade-up" data-aos-delay="200">
@@ -1447,17 +1575,28 @@
     <section class="section-padding ceo-section">
         <div class="container">
             <div class="ceo-card" data-aos="zoom-in" data-aos-delay="100">
-                <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
-                <blockquote>
-                    "Building sustainable business partnerships through <span class="gold">professionalism</span> and
-                    <span class="gold">excellence</span>."
-                </blockquote>
-                <div class="ceo-name">— CEO & Director</div>
-                <div class="ceo-title">SAHIBA TRADE VENTURES</div>
-                <div class="declaration">
-                    <strong>Official Declaration:</strong> This corporate profile is issued for banking, trade finance,
-                    international business, and business development purposes. All activities are conducted in
-                    accordance with applicable trade laws and compliance standards.
+                <div class="ceo-portrait">
+                    <div class="ceo-frame">
+                        <img src="CEO.png" alt="Sarim Zaman, CEO &amp; Director of Sahiba Trade Ventures" loading="lazy">
+                    </div>
+                    <div class="ceo-badge">Chief Executive Officer</div>
+                </div>
+                <div class="ceo-content">
+                    <span class="ceo-eyebrow">Message from the CEO</span>
+                    <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
+                    <blockquote>
+                        "Building sustainable business partnerships through <span class="gold">professionalism</span> and
+                        <span class="gold">excellence</span>."
+                    </blockquote>
+                    <div class="ceo-sign">
+                        <div class="ceo-name">Sarim Zaman</div>
+                        <div class="ceo-title">CEO &amp; Director &middot; SAHIBA TRADE VENTURES</div>
+                    </div>
+                    <div class="declaration">
+                        <strong>Official Declaration:</strong> This corporate profile is issued for banking, trade finance,
+                        international business, and business development purposes. All activities are conducted in
+                        accordance with applicable trade laws and compliance standards.
+                    </div>
                 </div>
             </div>
         </div>
